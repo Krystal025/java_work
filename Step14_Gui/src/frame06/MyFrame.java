@@ -12,9 +12,7 @@ import javax.swing.JOptionPane;
 
 public class MyFrame extends JFrame implements ActionListener{
 	//필드
-		JButton sendBtn;
-		JButton deleteBtn;
-		JButton updateBtn;
+		JButton sendBtn, deleteBtn, updateBtn;
 	//생성자
 	public MyFrame(String title) {
 		super(title);
@@ -38,11 +36,6 @@ public class MyFrame extends JFrame implements ActionListener{
 		deleteBtn.addActionListener(this);
 		updateBtn.addActionListener(this);
 		
-		//각각의 버튼에 action 명령을 설정할 수 있다
-		sendBtn.setActionCommand("send");
-		deleteBtn.setActionCommand("delete");
-		updateBtn.setActionCommand("update");
-		
 		//프레임을 화면상에 실제로 보이게 하기 (false하면 보이지 않음)
 		this.setVisible(true);
 	}
@@ -57,14 +50,17 @@ public class MyFrame extends JFrame implements ActionListener{
 		//이 객체를 활용하면 어떤 버튼이 눌러졌는지 구별할 수 있다
 		
 		//눌러진 버튼의 참조값 얻어오기
-		String cmd = e.getActionCommand();
+	      Object which = e.getSource();
+	      if(which == sendBtn) {
+	         // 전송 버튼을 누른것이다.
+	         JOptionPane.showMessageDialog(this, "전송합니다");
+	      } else if(which == deleteBtn) {
+	         // 삭제 버튼을 누른것이다.
+	         JOptionPane.showMessageDialog(this, "삭제합니다");
+	      } else if (which == updateBtn) {
+	         // 수정 버튼을 누른것이다.
+	         JOptionPane.showMessageDialog(this, "수정합니다");
 
-		if(cmd.equals("send")) {
-			JOptionPane.showMessageDialog(this, "전송합니다");
-		}else if(cmd.equals("delete")) {
-			JOptionPane.showMessageDialog(this, "삭제합니다");
-		}else if(cmd.equals("update")) {
-			JOptionPane.showMessageDialog(this, "수정합니다");
 		}
 	}
 }

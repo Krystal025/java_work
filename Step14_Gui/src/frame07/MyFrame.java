@@ -38,7 +38,6 @@ public class MyFrame extends JFrame implements ActionListener {
 		sendBtn.setActionCommand("send");
 		deleteBtn.setActionCommand("delete");
 		updateBtn.setActionCommand("update");
-
 		// 프레임을 화면상에 실제로 보이게 하기 (false하면 보이지 않음)
 		this.setVisible(true);
 	}
@@ -53,11 +52,10 @@ public class MyFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// 메소드의 매개변수로 전달되는 ActionEvent 객체에 이벤트에 대한 정보가 들어있따
 		// 이 객체를 활용하면 어떤 버튼이 눌러졌는지 구별할 수 있다
-
-		// 눌러진 버튼의 참조값 얻어오기
+		
 		String cmd = e.getActionCommand();
 		/*
-		 * JAVA에선 문자열의 참조갑이 같은지 비교할 때에는 비교연산자 ==를 이용해서 비교하지만 문자열의 참조값이 아닌 내용이 같은지 비교할 때는
+		 * JAVA에선 문자열의 참조값이 같은지 비교할 때에는 비교연산자 ==를 이용해서 비교하지만 문자열의 참조값이 아닌 내용이 같은지 비교할 때는
 		 * String의 .equals()메소드를 이용해서 비교한다 왜냐하면 JAVA에서는 문자열을 만드는 방법에 따라서 내용은 같지만 참조값이
 		 * 다르게 나오는 경우도 있기 때문이다 따라서 문자열의 내용이 같은지 정확히 비교할 때는 반드시 .equals()메소드를 이용해야한다
 		 */
