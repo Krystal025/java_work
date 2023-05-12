@@ -18,7 +18,7 @@ public class MyFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//레이아웃 매니저는 아직 사용하지 않을 것(모든 UI를 절대 좌표에 배치하겠
 		
-		//FlowLayout 매니저 사용해보기
+		//GridLayout 매니저 사용해보기
 		setLayout(new GridLayout(2, 2));
 		
 		JButton btn1 = new JButton("버튼1");

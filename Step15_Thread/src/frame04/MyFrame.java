@@ -43,7 +43,8 @@ public class MyFrame extends JFrame implements ActionListener {
 
 		// 내부 클래스로 스래드 클래스 만들기
 		/*
-		 * CountRunnable runnable = new CountRunnable(); Thread t = new
+		 * CountRunnable runnable = new CountRunnable(); 
+		 * Thread t = new
 		 * Thread(runnable); t.start();
 		 */
 		// 위의 3줄을 줄여서 아래와 같이 사용할 수 있다
