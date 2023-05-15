@@ -15,6 +15,5 @@ public class MainClass05 {
 		 * 가 출력되도록 Car클래스의 showInfo()메소드안에 내용을 작성해보세요
 		 */
 		car1.showInfo();
-		
-	}
+		}
 }

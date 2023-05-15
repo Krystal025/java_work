@@ -18,6 +18,8 @@ public class MainClass05 {
 		//name변수를 비우기 (null은 참조데이터 type이 담길수 있는 빈공간을 의미한다)
 		name=null;
 		
+		System.out.println(name); //null
+		System.out.println(tmp);  //김구라
 	}
 
 }

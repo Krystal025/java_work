@@ -19,7 +19,7 @@ public class MainClass02 {
 		car1.drive();
 		car2.drive();
 		//NullPointerException 발생 car3 변수안에는 참조값이 없다 
-		car3.drive();  //참조값이 있어야 메서드를 사용할 수 있다 
+//		car3.drive();  //참조값이 있어야 메서드를 사용할 수 있다 
 	}
 
 }
