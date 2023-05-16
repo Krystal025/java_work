@@ -114,7 +114,7 @@ public class MemberDao {
 		// 회원 정보가 누적된 List 객체의 참조값을 리턴한다.
 		return list;
 	}
-
+	
 	// 회원 한명의 정보를 삭제하는 메소드
 	public boolean delete(int num) {
 		// 필요한 객체를 담을 지역 변수를 미리 만들기

@@ -17,7 +17,7 @@ public class MainClass17 {
 		if(dto != null) {
 			System.out.println(num+" 번 회원의 이름은:"+dto.getName()+" 주소는:"+dto.getAddr());
 		}else {
-			System.out.println(num+" 번 회운은 존재하지 않습니다!");
+			System.out.println(num+" 번 회원은 존재하지 않습니다!");
 		}
 				
 	}

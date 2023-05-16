@@ -26,6 +26,7 @@ public class Test {
 	public Airplane getPlane() {
 		Airplane plane=new Airplane();
 		return plane;
+		
 	}
 	//int type을 메서드의 인자로 전달받는 메서드
 	public void setNum(int num) {
