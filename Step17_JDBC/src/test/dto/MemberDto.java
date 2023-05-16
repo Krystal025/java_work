@@ -17,7 +17,6 @@ public class MemberDto {
 	//기본생성자
 	public MemberDto() {}
 	
-	
 	//마우스 우클릭 -> source -> generate 메뉴에서 constructor와 setter, getter 메소드 생성가능 
 	public MemberDto(int num, String name, String addr) {
 		super();

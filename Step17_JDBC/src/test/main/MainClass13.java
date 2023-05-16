@@ -14,6 +14,7 @@ public class MainClass13 {
 		MemberDto dto = new MemberDto();
 		dto.setName(name);
 		dto.setAddr(addr);
+		
 		//MemberDao 객체를 이용해서 회원정보를 저장하고 성공여부를 리턴받는다 
 		MemberDao dao = new MemberDao();
 		boolean isSuccess = dao.insert(dto);
