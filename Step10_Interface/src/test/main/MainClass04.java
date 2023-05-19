@@ -11,7 +11,7 @@ public class MainClass04 {
 			}
 		});
 		useDrill(()->{
-			System.out.println("천장에 구	멍을 뚤어요!");
+			System.out.println("천장에 구멍을 뚤어요!");
 		});
 	}
 	public static void useDrill(Drill d) {

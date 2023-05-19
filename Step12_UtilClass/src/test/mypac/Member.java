@@ -10,7 +10,7 @@ public class Member {
 	 * 생성자는 다중정의가 가능하다
 	 * 따라서 어떤 객체를 생성하는 방법이 여러가지가 될수도 있다
 	 */
-	public Member() {}
+	public Member () {}
 	
 	//필드에 저장할 값을 전달받는 생성자
 	public Member(int num, String name, String addr) {

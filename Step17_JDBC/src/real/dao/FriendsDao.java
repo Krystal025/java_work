@@ -1,4 +1,4 @@
-package test.dao;
+package real.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,36 +6,37 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.dto.DeptDto;
+import real.dto.FriendsDto;
 import test.dto.MemberDto;
 import test.util.DBConnect;
 
-public class DeptDao {
+public class FriendsDao {
 	
-	//getData() : 번호에 해당하는 부서의 정보를 반환하는 메소드 
-	public DeptDto getData(int deptno) {
-		
-		DeptDto dto = null;
+	public FriendsDto getData(String name) {
+		FriendsDto dto = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = new DBConnect().getConn();
-			String sql = "SELECT dname, loc" + " FROM dept" + " WHERE deptno=?";
+			String sql = "SELECT num, height, major" 
+					+ " FROM table명" 
+					+ " WHERE name=?";
 			pstmt = conn.prepareStatement(sql);
 			//SELECT문이 미완성이라면 여기서 완성 
-			pstmt.setInt(1, deptno);
+			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				// 현재 커서가 존재하는 row 에 있는 정보를 추출해서 사용
-				String dname = rs.getString("dname");
-				String loc = rs.getString("loc");
-				// DeptDto 객체에 한 부서의 정보를 담음
-				dto = new DeptDto();
-				dto.setDeptno(deptno);
-				dto.setDname(dname);
-				dto.setLoc(loc);
+				int num = rs.getInt("num");
+				int height = rs.getInt("height");
+				String major = rs.getString("major");
+				
+				dto = new FriendsDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setName(rs.getString("name"));
+				dto.setHeight(rs.getInt("height"));
+				dto.setMajor(rs.getString("height"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,49 +52,59 @@ public class DeptDao {
 			}
 		}
 		return dto;
+
 	}
 	
-	// getList() : 전체부서의 정보를 반환하는 메소드 
-	public List<DeptDto> getList(){
-		// 부서정보를 누적할 배열객체 
-		List<DeptDto> list = new ArrayList<>();
+	public List<FriendsDto> getList(){
+		List<FriendsDto> list = new ArrayList<>();
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = new DBConnect().getConn();
-			String sql = "SELECT deptno, dname, loc" + " FROM dept" + " ORDER BY deptno ASC";
+			String sql = "SELECT num, name, height, major" 
+					+ " FROM friends" 
+					+ " ORDER BY num ASC";
 			pstmt = conn.prepareStatement(sql);
+			//SELECT문이 미완성이라면 여기서 완성 
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				DeptDto dto = new DeptDto();	
-				dto.setDeptno(rs.getInt("deptno"));
-				dto.setDname(rs.getString("dname"));
-				dto.setLoc(rs.getString("loc"));
+			while (rs.next()) {
+				FriendsDto dto = new FriendsDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setName(rs.getString("name"));
+				dto.setHeight(rs.getInt("height"));
+				dto.setMajor(rs.getString("major"));
+				
 				list.add(dto);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			}catch(Exception e) {}
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
 		}
 		return list;
 	}
 	
-	// delete()
-	public boolean delete(int deptno) {
+	public boolean delete(int num) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int rowCount = 0;
 		try {
 			conn = new DBConnect().getConn();
-			String sql = "DELETE FROM dept" + " WHERE deptno=?";
+			String sql = "DELETE FROM friends"
+						+" WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, deptno);
+			pstmt.setInt(1, num);
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,21 +123,23 @@ public class DeptDao {
 		} else {
 			return false;
 		}
-
 	}
 	
-	// update()
-	public boolean update(DeptDto dto) {
+	public boolean update(FriendsDto dto) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int rowCount = 0;
 		try {
 			conn = new DBConnect().getConn();
-			String sql = "UPDATE dept" + " SET dname=?, loc=?" + " WHERE deptno=?";
+			String sql = "UPDATE friends"
+						+" SET name=?, height=?, major=?"
+						+" WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getDname());
-			pstmt.setString(2, dto.getLoc());
-			pstmt.setInt(3, dto.getDeptno());
+			pstmt.setString(1, dto.getName());
+			pstmt.setInt(2, dto.getHeight());
+			pstmt.setString(3, dto.getMajor());
+			pstmt.setInt(4, dto.getNum());
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,19 +159,21 @@ public class DeptDao {
 			return false;
 		}
 	}
-
-	// insert()
-	public boolean insert(DeptDto dto) {
+	
+	public boolean insert(FriendsDto dto) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int rowCount = 0;
 		try {
 			conn = new DBConnect().getConn();
-			String sql = "INSERT INTO dept" + " (deptno, dname, loc)" + " VALUES( ?, ?, ?)";
+			String sql = "INSERT INTO friends"
+						+" (num, name, height, major)"
+						+" VALUES (member_seq.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getDeptno());
-			pstmt.setString(2, dto.getDname());
-			pstmt.setString(3, dto.getLoc());
+			pstmt.setString(1, dto.getName());
+			pstmt.setInt(2, dto.getHeight());
+			pstmt.setString(3, dto.getMajor());
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,4 +193,5 @@ public class DeptDao {
 			return false;
 		}
 	}
+	
 }
